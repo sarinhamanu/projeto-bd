@@ -84,4 +84,52 @@ if($usuario == null){
         'message' =>"Usuário não encontrado"
      ]);
   }
+
+public function excluir($id){
+ $usuario = Usuario::find($id);
+
+ if(!isset($usuario)){
+    return response()->json([
+   'status' => false,'message' => "usuário não encontrado"
+    ]);
+ }
+
+ $usuario->delete();
+
+ return response()->json([
+'status' => true, 'message'=> "usuário excluído com sucesso"
+ ]);
+
+
+
+
+
+}
+public function update(Request $request){
+    $usuario = Usuario::find($request->id);
+
+    if(!isset($usuario)){
+        return response()->json([
+            'status' => 'Usuário não encontrado'
+        ]);
+    }
+if(isset($request->nome)){
+    $usuario->nome =$request->nome;
+}
+
+if(isset($request->email)){
+    $usuario->email =$request->email;
+}
+if(isset($request->cpf)){
+    $usuario->cpf =$request->cpf;
+
+$usuario->update();
+
+return response()->json([
+'status' =>true,
+'message'=> 'usuário atualizando'
+]);
+}
+
+}
 }
