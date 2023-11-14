@@ -18,3 +18,5 @@ Route::post('nome ', [UsuarioController::class, 'pesquisarPorNome']);
 Route::delete('delete/{id}',[UsuarioController::class, 'excluir']); 
 
 Route::put('update',[UsuarioController::class, 'update']);
+
+Route::get('exportar/csv',[UsuarioController::class,'exportarCsv']);
